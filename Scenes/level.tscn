@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://ii41f2epll6d"]
+
+[ext_resource type="Script" uid="uid://bwxh45k2c2wpg" path="res://Scripts/levelControl.gd" id="1_6phgx"]
+[ext_resource type="PackedScene" uid="uid://ca5f6tamdqp4b" path="res://Scenes/bird/bird.tscn" id="1_k5f4k"]
+[ext_resource type="PackedScene" uid="uid://6qmx1om1j872" path="res://Scenes/wall/wall_controller.tscn" id="2_k5f4k"]
+
+[node name="Level" type="Node"]
+script = ExtResource("1_6phgx")
+
+[node name="WallController" parent="." instance=ExtResource("2_k5f4k")]
+
+[node name="bird" parent="." instance=ExtResource("1_k5f4k")]
+
+[node name="wallTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="wallTimer" to="." method="_on_wall_timer_timeout"]
