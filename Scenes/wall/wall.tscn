@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bo8w0r6s1d7kr" path="res://icon.svg" id="2_iyf1s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iyf1s"]
-size = Vector2(128, 384)
+size = Vector2(128, 576)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c8gop"]
 size = Vector2(24, 192)
@@ -13,12 +13,12 @@ size = Vector2(24, 192)
 script = ExtResource("1_jgqx5")
 
 [node name="wallSprite" type="Sprite2D" parent="."]
-position = Vector2(0, 192)
-scale = Vector2(1, 3)
+position = Vector2(0, 288)
+scale = Vector2(1, 4.5)
 texture = ExtResource("2_iyf1s")
 
 [node name="wallCollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2(0, 192)
+position = Vector2(0, 288)
 shape = SubResource("RectangleShape2D_iyf1s")
 
 [node name="PointDetect" type="Area2D" parent="."]

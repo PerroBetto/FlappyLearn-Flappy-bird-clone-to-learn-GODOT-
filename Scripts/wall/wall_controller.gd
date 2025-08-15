@@ -4,8 +4,7 @@ var Wall = preload("res://Scenes/wall/wall.tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if(Input.is_action_just_pressed("ui_down")):
-		create_wall(randf_range(200, 300))
+	pass
 
 func create_wall(dist: float):
 	#create two walls at a distance from eachother that spawn together
