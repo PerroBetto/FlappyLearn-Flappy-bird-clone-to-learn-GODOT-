@@ -1,4 +1,4 @@
-#Flappy Ripoff
+## Flappy Ripoff
 This project is being utilized as a learning tool. FlappyRipoff is a clone of Flappy Bird
 
 Avoid Collidable walls headed towards you while also staying above the ground.
