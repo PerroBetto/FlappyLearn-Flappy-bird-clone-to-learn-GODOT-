@@ -16,7 +16,7 @@ func create_wall(dist: float):
 	topWall.isMonitorable = true
 	
 	var yPos = randf_range(200, 500)
-	var StartPos:Vector2 = Vector2(1300, yPos)
+	var StartPos:Vector2 = Vector2(1350, yPos)
 	
 	bottomWall.position = StartPos + Vector2(0, dist/2)
 	topWall.position = StartPos - Vector2(0, dist/2)

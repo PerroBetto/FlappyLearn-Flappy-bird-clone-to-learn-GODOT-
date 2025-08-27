@@ -28,3 +28,7 @@ window/stretch/mode="viewport"
 [dotnet]
 
 project/assembly_name="flappyRipoff"
+
+[global_group]
+
+Collidables="Entities the BIRD can collide with"

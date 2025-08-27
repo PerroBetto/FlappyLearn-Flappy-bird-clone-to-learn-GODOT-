@@ -20,4 +20,10 @@ script = ExtResource("1_6phgx")
 [node name="Floor" parent="." instance=ExtResource("5_wqkje")]
 position = Vector2(640, 744)
 
+[node name="PauseMenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [connection signal="timeout" from="wallTimer" to="." method="_on_wall_timer_timeout"]

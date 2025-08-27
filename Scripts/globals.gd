@@ -3,6 +3,7 @@ extends Node
 var save_path : String = "user://savefile.save"
 
 var High_Score : int
+var Paused : bool = false
 
 func _load_data():
 	if !(FileAccess.file_exists(save_path)):

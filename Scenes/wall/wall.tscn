@@ -9,7 +9,7 @@ size = Vector2(128, 576)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c8gop"]
 size = Vector2(24, 192)
 
-[node name="wall" type="AnimatableBody2D"]
+[node name="wall" type="AnimatableBody2D" groups=["Collidables"]]
 script = ExtResource("1_jgqx5")
 
 [node name="wallSprite" type="Sprite2D" parent="."]

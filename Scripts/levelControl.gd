@@ -26,7 +26,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	pass
+	if(Input.is_action_just_pressed("ui_cancel")):
+		pause_play()
 
 func incrementPoints():
 	if(PlayerAlive):
@@ -48,12 +49,15 @@ func endGame():
 
 func _on_wall_timer_timeout():
 	if(PlayerAlive):
-		if(wallControl.has_method("create_wall")):
-			wallControl.create_wall(200)
-			if(time > minTimer):
-				time-=0.05
+		wallControl.call("create_wall", 200)
+		if(time > minTimer):
+			time-=0.05
 		wallTimer.start(time)
 
 func setHighScore():
 	Globals._save_score(Score)
+
+func pause_play():
+	Globals.Paused = !Globals.Paused
+	wallTimer.paused = Globals.Paused
 	

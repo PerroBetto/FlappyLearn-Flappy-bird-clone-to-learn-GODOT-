@@ -15,6 +15,9 @@ func _process(_delta):
 	pass
 
 func _physics_process(delta):
+	if(Globals.Paused):
+		return
+
 	Sprite.region_rect.position.x += (Speed * -1) * delta
 
 func set_speed(spd: float) -> void:

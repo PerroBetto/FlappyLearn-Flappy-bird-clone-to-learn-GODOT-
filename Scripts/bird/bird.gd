@@ -3,13 +3,12 @@ signal pointUP
 signal killed
 
 var JumpHeight : float = -300
-var alive : bool = true
 
 var state : int;
 enum STATE {
 	ALIVE,
 	DEAD,
-	TITLE	
+	TITLE
 }
 
 var minTitleHeight : float = 999.0
@@ -22,10 +21,13 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 
+	if(Globals.Paused):
+		return
+
 	if(state == STATE.ALIVE):
 		if(!is_on_floor()):
 			velocity.y += get_gravity().y * delta
-		if(Input.is_action_just_pressed("ui_accept") && alive):
+		if(Input.is_action_just_pressed("ui_accept") && state == STATE.ALIVE):
 			_on_jump()
 	elif(state == STATE.TITLE):
 		if(!is_on_floor()):
@@ -34,7 +36,7 @@ func _physics_process(delta):
 			_on_jump()
 	elif(state == STATE.DEAD):
 		_on_player_dead()
-	
+
 	move_and_slide()
 
 func _on_point_detect_area_entered(area):
@@ -48,7 +50,6 @@ func _on_point_detect_body_entered(body):
 
 func _on_player_dead():
 	killed.emit()
-	alive = false
 	print("killed")
 
 func _on_jump():
