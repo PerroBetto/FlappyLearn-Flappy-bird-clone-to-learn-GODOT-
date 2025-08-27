@@ -21,10 +21,11 @@ func _ready():
 	BIRD.pointUP.connect(incrementPoints)
 	BIRD.killed.connect(endGame)
 	wallTimer.start(0.1)
+	BIRD.state = BIRD.STATE.ALIVE
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 func incrementPoints():

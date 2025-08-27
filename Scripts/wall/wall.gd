@@ -1,5 +1,4 @@
 extends AnimatableBody2D
-signal birdCollided
 
 @onready var pointDetect : Area2D = $PointDetect
 
