@@ -44,4 +44,7 @@ text = "Settings
 [node name="Floor" parent="." instance=ExtResource("4_158mb")]
 position = Vector2(640, 744)
 
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(640, 360)
+
 [connection signal="pressed" from="MenuOptions/VBoxContainer/Play" to="MenuOptions" method="_on_play_pressed"]

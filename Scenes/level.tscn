@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ii41f2epll6d"]
+[gd_scene load_steps=7 format=3 uid="uid://ii41f2epll6d"]
 
 [ext_resource type="Script" uid="uid://bwxh45k2c2wpg" path="res://Scripts/levelControl.gd" id="1_6phgx"]
 [ext_resource type="PackedScene" uid="uid://ca5f6tamdqp4b" path="res://Scenes/bird/bird.tscn" id="1_k5f4k"]
 [ext_resource type="PackedScene" uid="uid://6qmx1om1j872" path="res://Scenes/wall/wall_controller.tscn" id="2_k5f4k"]
 [ext_resource type="PackedScene" uid="uid://740lwoma4etc" path="res://Scenes/UI/score_board_ui.tscn" id="4_81xng"]
 [ext_resource type="PackedScene" uid="uid://bdf1rixw20yod" path="res://Scenes/wall/floor.tscn" id="5_wqkje"]
+[ext_resource type="Script" uid="uid://bku4d8h5fh85s" path="res://Scenes/pause_menu.gd" id="6_0f350"]
 
 [node name="Level" type="Node"]
 script = ExtResource("1_6phgx")
@@ -22,8 +23,33 @@ position = Vector2(640, 744)
 
 [node name="PauseMenu" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -640.0
+offset_right = 640.0
+offset_bottom = 720.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("6_0f350")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu"]
+layout_mode = 0
+offset_left = 540.0
+offset_top = 360.0
+offset_right = 740.0
+offset_bottom = 660.0
+
+[node name="startOver" type="Button" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+text = "Start Over
+"
+
+[node name="quitToMenu" type="Button" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+text = "Quit to Menu"
 
 [connection signal="timeout" from="wallTimer" to="." method="_on_wall_timer_timeout"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/startOver" to="PauseMenu" method="_on_retry_pressed"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/quitToMenu" to="PauseMenu" method="_on_menu_pressed"]
