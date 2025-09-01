@@ -56,3 +56,4 @@ text = "Quit"
 position = Vector2(640, 744)
 
 [connection signal="pressed" from="MenuOptions/VBoxContainer/Play" to="MenuOptions" method="_on_play_pressed"]
+[connection signal="pressed" from="MenuOptions/VBoxContainer/Settings" to="MenuOptions" method="_on_settings_pressed"]
