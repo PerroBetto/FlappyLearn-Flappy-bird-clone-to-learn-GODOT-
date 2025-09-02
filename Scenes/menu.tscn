@@ -1,16 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://8wfunbx3p8jo"]
+[gd_scene load_steps=7 format=3 uid="uid://8wfunbx3p8jo"]
 
 [ext_resource type="Script" uid="uid://cgygkapifp5hi" path="res://Scripts/mainMenu.gd" id="1_xhh6f"]
 [ext_resource type="PackedScene" uid="uid://740lwoma4etc" path="res://Scenes/UI/score_board_ui.tscn" id="2_cayip"]
 [ext_resource type="PackedScene" uid="uid://ca5f6tamdqp4b" path="res://Scenes/bird/bird.tscn" id="3_cayip"]
 [ext_resource type="Script" uid="uid://crs18af621utf" path="res://Scenes/menu_options.gd" id="3_wwsa2"]
 [ext_resource type="PackedScene" uid="uid://bdf1rixw20yod" path="res://Scenes/wall/floor.tscn" id="4_158mb"]
+[ext_resource type="PackedScene" uid="uid://cn1t6f2qp83dp" path="res://Scenes/UI/settings.tscn" id="4_jsrd8"]
 
 [node name="Menu" type="Node"]
 script = ExtResource("1_xhh6f")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(640, 360)
+
+[node name="bird" parent="." instance=ExtResource("3_cayip")]
+
+[node name="Floor" parent="." instance=ExtResource("4_158mb")]
+position = Vector2(640, 744)
 
 [node name="ScoreBoardUI" parent="." instance=ExtResource("2_cayip")]
 
@@ -50,10 +56,8 @@ text = "Settings
 layout_mode = 2
 text = "Quit"
 
-[node name="bird" parent="." instance=ExtResource("3_cayip")]
-
-[node name="Floor" parent="." instance=ExtResource("4_158mb")]
-position = Vector2(640, 744)
+[node name="Settings" parent="MenuOptions" instance=ExtResource("4_jsrd8")]
+layout_mode = 1
 
 [connection signal="pressed" from="MenuOptions/VBoxContainer/Play" to="MenuOptions" method="_on_play_pressed"]
 [connection signal="pressed" from="MenuOptions/VBoxContainer/Settings" to="MenuOptions" method="_on_settings_pressed"]

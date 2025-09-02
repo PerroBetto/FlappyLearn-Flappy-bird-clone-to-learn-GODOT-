@@ -1,6 +1,6 @@
 extends Control
 
-@onready var Score:Label = $PanelContainer/MarginContainer/Score
+@onready var Score:Label = $PanelContainer/MarginContainer/CenterContainer/Score
 
 var score = 0
 
