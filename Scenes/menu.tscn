@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cgygkapifp5hi" path="res://Scripts/mainMenu.gd" id="1_xhh6f"]
 [ext_resource type="PackedScene" uid="uid://740lwoma4etc" path="res://Scenes/UI/score_board_ui.tscn" id="2_cayip"]
 [ext_resource type="PackedScene" uid="uid://ca5f6tamdqp4b" path="res://Scenes/bird/bird.tscn" id="3_cayip"]
-[ext_resource type="Script" uid="uid://crs18af621utf" path="res://Scenes/menu_options.gd" id="3_wwsa2"]
+[ext_resource type="Script" uid="uid://crs18af621utf" path="res://Scripts/UI/menu_options.gd" id="3_wwsa2"]
 [ext_resource type="PackedScene" uid="uid://bdf1rixw20yod" path="res://Scenes/wall/floor.tscn" id="4_158mb"]
 [ext_resource type="PackedScene" uid="uid://cn1t6f2qp83dp" path="res://Scenes/UI/settings.tscn" id="4_jsrd8"]
 

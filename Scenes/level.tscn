@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://6qmx1om1j872" path="res://Scenes/wall/wall_controller.tscn" id="2_k5f4k"]
 [ext_resource type="PackedScene" uid="uid://740lwoma4etc" path="res://Scenes/UI/score_board_ui.tscn" id="4_81xng"]
 [ext_resource type="PackedScene" uid="uid://bdf1rixw20yod" path="res://Scenes/wall/floor.tscn" id="5_wqkje"]
-[ext_resource type="Script" uid="uid://bku4d8h5fh85s" path="res://Scenes/pause_menu.gd" id="6_0f350"]
+[ext_resource type="Script" uid="uid://bku4d8h5fh85s" path="res://Scripts/UI/pause_menu.gd" id="6_0f350"]
 
 [node name="Level" type="Node"]
 script = ExtResource("1_6phgx")
