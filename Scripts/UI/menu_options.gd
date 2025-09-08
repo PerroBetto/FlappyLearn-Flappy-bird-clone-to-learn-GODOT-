@@ -24,3 +24,7 @@ func _on_settings_pressed() -> void:
 
 func _menu_transition() -> void:
 	pass
+
+
+func _on_quit_pressed() -> void:
+	get_tree().quit()

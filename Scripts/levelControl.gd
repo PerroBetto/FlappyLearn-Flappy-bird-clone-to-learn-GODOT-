@@ -1,4 +1,4 @@
-extends Node
+extends Save_Settings
 
 var dead_bird = preload("res://Scenes/bird/dead_bird.tscn")
 
@@ -43,7 +43,7 @@ func endGame():
 	birdBody.position = BIRD.position
 	BIRD.queue_free()
 	call_deferred("add_child", birdBody) 
-	if(Globals.High_Score == null || Globals.High_Score < Score):
+	if(High_Score == null || High_Score < Score):
 		setHighScore()
 
 #called whenever the timer for creating a wall ends.
@@ -56,9 +56,9 @@ func _on_wall_timer_timeout():
 		wallTimer.start(time)
 
 func setHighScore():
-	Globals._save_score(Score)
+	_save_score(Score)
 
 func pause_play():
-	Globals.Paused = !Globals.Paused
-	wallTimer.paused = Globals.Paused
+	Paused = !Paused
+	wallTimer.paused = Paused
 	
