@@ -1,9 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://cn1t6f2qp83dp"]
+[gd_scene load_steps=5 format=3 uid="uid://cn1t6f2qp83dp"]
+
+[ext_resource type="Script" uid="uid://cd6tqfu8cdxay" path="res://Scripts/UI/settings.gd" id="1_owiy1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8b3at"]
 bg_color = Color(0.215686, 0.215686, 0.215686, 0.65098)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8b3at"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_owiy1"]
+bg_color = Color(0.699193, 1.60396e-05, 8.66354e-06, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -12,6 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_owiy1")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -158,10 +168,21 @@ layout_mode = 2
 
 [node name="Back" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 2
 text = "Back
 "
+
+[node name="Apply" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Apply Changes"
 
 [node name="ResetSave" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
+theme_override_styles/hover = SubResource("StyleBoxFlat_owiy1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_owiy1")
+theme_override_styles/normal = SubResource("StyleBoxFlat_owiy1")
 text = "Delete Save"
+
+[connection signal="pressed" from="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Back" to="." method="_on_back_pressed"]

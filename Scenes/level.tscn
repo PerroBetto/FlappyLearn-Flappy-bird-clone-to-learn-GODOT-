@@ -56,4 +56,5 @@ text = "Quit to Menu"
 
 [connection signal="timeout" from="wallTimer" to="." method="_on_wall_timer_timeout"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/startOver" to="PauseMenu" method="_on_retry_pressed"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/Settings" to="PauseMenu" method="_on_settings_pressed"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/quitToMenu" to="PauseMenu" method="_on_menu_pressed"]

@@ -1,4 +1,4 @@
-extends Save_Settings
+extends Node
 
 var dead_bird = preload("res://Scenes/bird/dead_bird.tscn")
 
@@ -32,7 +32,6 @@ func incrementPoints():
 		Score+=1
 		if(ScoreBoard.has_method("process_point")):
 			ScoreBoard.process_point(Score)
-		print(Score)
 
 #calls all endgame functions for all entities
 func endGame():
@@ -43,7 +42,7 @@ func endGame():
 	birdBody.position = BIRD.position
 	BIRD.queue_free()
 	call_deferred("add_child", birdBody) 
-	if(High_Score == null || High_Score < Score):
+	if(Globals.High_Score == null || Globals.High_Score < Score):
 		setHighScore()
 
 #called whenever the timer for creating a wall ends.
@@ -56,9 +55,9 @@ func _on_wall_timer_timeout():
 		wallTimer.start(time)
 
 func setHighScore():
-	_save_score(Score)
+	Globals._save_score(Score)
 
 func pause_play():
-	Paused = !Paused
-	wallTimer.paused = Paused
+	Globals.Paused = !Globals.Paused
+	wallTimer.paused = Globals.Paused
 	

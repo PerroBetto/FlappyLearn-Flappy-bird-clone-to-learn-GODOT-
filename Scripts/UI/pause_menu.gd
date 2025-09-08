@@ -1,24 +1,40 @@
 extends Control
 
+var settingsBoxPreload : PackedScene = preload("res://Scenes/UI/settings.tscn")
+var settingsBox : Control;
+
 @onready var retryButton : Button = $VBoxContainer/startOver
 @onready var menuButton : Button = $VBoxContainer/quitToMenu
+@onready var settingsButton : Button = $VBoxContainer/Settings
+@onready var menu : VBoxContainer = $VBoxContainer
 
 var gameStatus : bool = true #true if player is alive, false if dead
 var isDisabled : bool = true
 
+
+enum Menus
+{
+	MAIN,
+	SETTINGS
+}
+
+var currMenu : Menus
+
 func _ready():
+	currMenu = Menus.MAIN
 	_visibilityProcess()
 
 func _process(_delta):
 	_visibilityProcess()
 
-	if(Globals.Paused || !(gameStatus)):
+	if(Globals.Paused || !(gameStatus) || currMenu == Menus.SETTINGS):
 		isDisabled = false
 	else:
 		isDisabled = true
 
 	retryButton.disabled = isDisabled
 	menuButton.disabled = isDisabled
+	settingsButton.disabled = isDisabled
 		
 
 
@@ -40,8 +56,23 @@ func _visibilityProcess():
 	else:
 		alpha = 0
 	
-	self.modulate = Color(1, 1, 1, alpha)
-	pass
+	if(currMenu == Menus.SETTINGS):
+		alpha = 0
+	
+	menu.modulate = Color(1, 1, 1, alpha)
 
 func setGameStatus(status : bool) -> void:
 	gameStatus = status
+
+func _on_settings_pressed():
+	currMenu = Menus.SETTINGS
+
+	settingsBox = settingsBoxPreload.instantiate()
+	add_child(settingsBox)
+	settingsBox.back.connect(_close_settings)
+
+func _close_settings():
+	settingsBox.back.disconnect(_close_settings)
+	settingsBox.queue_free()
+	settingsBox = null
+	currMenu = Menus.MAIN

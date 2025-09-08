@@ -53,5 +53,6 @@ func save_settings():
 
 	settingsFile.close()
 
-func load_settings():
-	pass
+func load_settings() -> Array:
+	var array = [1,2,3]
+	return array

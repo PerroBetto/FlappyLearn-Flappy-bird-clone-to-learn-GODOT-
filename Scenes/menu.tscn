@@ -29,7 +29,7 @@ grow_vertical = 2
 size_flags_horizontal = 4
 script = ExtResource("3_wwsa2")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuOptions"]
+[node name="mainMenu" type="VBoxContainer" parent="MenuOptions"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -42,19 +42,19 @@ offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Play" type="Button" parent="MenuOptions/VBoxContainer"]
+[node name="Play" type="Button" parent="MenuOptions/mainMenu"]
 layout_mode = 2
 text = "Play"
 
-[node name="Settings" type="Button" parent="MenuOptions/VBoxContainer"]
+[node name="Settings" type="Button" parent="MenuOptions/mainMenu"]
 layout_mode = 2
 text = "Settings
 "
 
-[node name="Quit" type="Button" parent="MenuOptions/VBoxContainer"]
+[node name="Quit" type="Button" parent="MenuOptions/mainMenu"]
 layout_mode = 2
 text = "Quit"
 
-[connection signal="pressed" from="MenuOptions/VBoxContainer/Play" to="MenuOptions" method="_on_play_pressed"]
-[connection signal="pressed" from="MenuOptions/VBoxContainer/Settings" to="MenuOptions" method="_on_settings_pressed"]
-[connection signal="pressed" from="MenuOptions/VBoxContainer/Quit" to="MenuOptions" method="_on_quit_pressed"]
+[connection signal="pressed" from="MenuOptions/mainMenu/Play" to="MenuOptions" method="_on_play_pressed"]
+[connection signal="pressed" from="MenuOptions/mainMenu/Settings" to="MenuOptions" method="_on_settings_pressed"]
+[connection signal="pressed" from="MenuOptions/mainMenu/Quit" to="MenuOptions" method="_on_quit_pressed"]

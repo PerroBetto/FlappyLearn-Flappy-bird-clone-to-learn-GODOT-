@@ -1,4 +1,10 @@
 extends Control
+signal menuTransish
+
+var settingsBoxPreload : PackedScene = preload("res://Scenes/UI/settings.tscn")
+var settingsBox : Control;
+
+@onready var mainMenu : VBoxContainer = $mainMenu
 
 enum Menus
 {
@@ -7,7 +13,6 @@ enum Menus
 }
 
 var currMenu : Menus
-var lastMenu : Menus
 
 func _ready() -> void:
 	currMenu = Menus.MAIN
@@ -15,16 +20,33 @@ func _ready() -> void:
 func _on_play_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/level.tscn")
 
-
-
 func _on_settings_pressed() -> void:
-	lastMenu = currMenu
 	currMenu = Menus.SETTINGS
+
+	settingsBox = settingsBoxPreload.instantiate()
+	add_child(settingsBox)
+	settingsBox.back.connect(_close_settings)
+
 	_menu_transition()
 
 func _menu_transition() -> void:
-	pass
+	menuTransish.emit()
+	if(currMenu == Menus.SETTINGS):
+		mainMenu.hide()
+	elif(currMenu == Menus.MAIN):
+		mainMenu.show()
 
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+func _close_settings():
+	settingsBox.back.disconnect(_close_settings)
+	settingsBox.queue_free()
+	settingsBox = null
+	currMenu = Menus.MAIN
+
+	_menu_transition()
+
+func get_current_menu() -> Menus:
+	return currMenu
