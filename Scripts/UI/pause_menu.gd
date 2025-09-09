@@ -1,4 +1,5 @@
 extends Control
+signal transition
 
 var settingsBoxPreload : PackedScene = preload("res://Scenes/UI/settings.tscn")
 var settingsBox : Control;
@@ -70,9 +71,15 @@ func _on_settings_pressed():
 	settingsBox = settingsBoxPreload.instantiate()
 	add_child(settingsBox)
 	settingsBox.back.connect(_close_settings)
+	transition.emit()
 
 func _close_settings():
 	settingsBox.back.disconnect(_close_settings)
 	settingsBox.queue_free()
 	settingsBox = null
 	currMenu = Menus.MAIN
+	transition.emit()
+
+	
+func get_current_menu() -> Menus:
+	return currMenu

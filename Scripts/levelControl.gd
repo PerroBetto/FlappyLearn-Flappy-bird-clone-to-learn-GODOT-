@@ -20,6 +20,7 @@ func _ready():
 	BIRD.position = Vector2(PlayerXPos, 200) #200 == center
 	BIRD.pointUP.connect(incrementPoints)
 	BIRD.killed.connect(endGame)
+	PauseMenu.transition.connect(score_transition)
 	wallTimer.start(0.1)
 	BIRD.state = BIRD.STATE.ALIVE
 
@@ -61,3 +62,8 @@ func pause_play():
 	Globals.Paused = !Globals.Paused
 	wallTimer.paused = Globals.Paused
 	
+func score_transition():
+	if(PauseMenu.call("get_current_menu") == PauseMenu.Menus.SETTINGS):
+		ScoreBoard.hide()
+	elif(PauseMenu.call("get_current_menu") == PauseMenu.Menus.MAIN):
+		ScoreBoard.show()

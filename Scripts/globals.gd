@@ -41,7 +41,7 @@ func _save_score(score : int):
 #
 # Settings file IO data
 #
-func save_settings(): 
+func save_settings(values : Array): 
 
 	# Use JSON to store the settings data as key-value pairs(?)
 	# Ensure you open and close the file, that everything workds and it all makes sense
@@ -53,6 +53,9 @@ func save_settings():
 
 	settingsFile.close()
 
-func load_settings() -> Array:
+func get_settings() -> Array:
 	var array = [1,2,3]
 	return array
+
+func load_settings():
+	pass

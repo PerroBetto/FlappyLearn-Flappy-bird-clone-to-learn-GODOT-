@@ -8,7 +8,7 @@ var Resolution : Vector2i;
 var Volume : float;
 
 func _ready():
-	var values = Globals.load_settings()
+	var values = Globals.get_settings()
 	print(values)
 	pass
 
@@ -17,7 +17,8 @@ func _on_back_pressed():
 
 
 func _on_apply_pressed():
-	Globals.save_settings()
+	var dogs = [1, 2, 3]
+	Globals.save_settings(dogs)
 
 
 func _on_reset_save_pressed():
