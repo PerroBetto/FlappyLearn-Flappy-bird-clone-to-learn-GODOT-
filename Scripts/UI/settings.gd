@@ -17,8 +17,7 @@ func _on_back_pressed():
 
 
 func _on_apply_pressed():
-	var dogs = [1, 2, 3]
-	Globals.save_settings(dogs)
+	pass
 
 
 func _on_reset_save_pressed():

@@ -12,7 +12,7 @@ var Paused : bool = false
 # var Resolution : Vector2i;
 # var Volume : float;
 var base_settings = {
-	"Window_Mode" : Window.Mode.MODE_EXCLUSIVE_FULLSCREEN,
+	"Window_Mode" : Window.Mode.MODE_WINDOWED,
 	"Resolution" : "1280x720",
 	"Volume" : 1.0
 
@@ -68,12 +68,8 @@ func save_settings(values : Dictionary):
 	settingsFile.close()
 
 func get_settings() -> Dictionary:
-	var array = [1,2,3]
-	return array
-
-func load_settings():
 	if!(FileAccess.file_exists(settings_path)):
-		save_settings(base_settings)
+		return {}
 	
 	var settingsFile = FileAccess.open(settings_path, FileAccess.READ)
 
@@ -83,9 +79,18 @@ func load_settings():
 	var err = json.parse(settingsFile.get_line())
 	if!(err == OK):
 		print("didnt work")
-		return
+		return {}
 
 	var file_data = json.data
+
+	settingsFile.close()
+	return file_data
+
+func load_settings():
+	if!(FileAccess.file_exists(settings_path)):
+		save_settings(base_settings)
+	
+	var file_data = get_settings()
 
 	#Keys: 
 	#Window_Mode: Window.mode
