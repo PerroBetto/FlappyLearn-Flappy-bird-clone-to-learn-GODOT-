@@ -21,6 +21,8 @@ func score_transition():
 	if(menu.call("get_current_menu") == menu.Menus.SETTINGS):
 		scoreBoard.hide()
 	elif(menu.call("get_current_menu") == menu.Menus.MAIN):
+		Globals._load_data()
+		scoreBoard.call("process_point", Globals.High_Score)
 		scoreBoard.show()
 
 

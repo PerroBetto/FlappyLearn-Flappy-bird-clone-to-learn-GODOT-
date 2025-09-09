@@ -14,3 +14,11 @@ func _ready():
 
 func _on_back_pressed():
 	back.emit()
+
+
+func _on_apply_pressed():
+	Globals.save_settings()
+
+
+func _on_reset_save_pressed():
+	Globals._save_score(0)
