@@ -13,7 +13,8 @@ var Paused : bool = false
 # var Volume : float;
 var base_settings = {
 	"Window_Mode" : Window.Mode.MODE_WINDOWED,
-	"Resolution" : "1280x720",
+	"Resolution_x" : 1920,
+	"Resolution_y" : 1080,
 	"Volume" : 1.0
 
 }
@@ -98,6 +99,7 @@ func load_settings():
 	#Volume: float
 
 	get_tree().get_root().get_window().mode = file_data["Window_Mode"]
+	DisplayServer.window_set_size(Vector2i(file_data["Resolution_x"], file_data["Resolution_y"]))
 
 
 	
