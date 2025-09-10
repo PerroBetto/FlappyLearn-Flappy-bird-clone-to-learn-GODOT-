@@ -10,6 +10,9 @@
 [node name="Level" type="Node"]
 script = ExtResource("1_6phgx")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(640, 360)
+
 [node name="WallController" parent="." instance=ExtResource("2_k5f4k")]
 
 [node name="bird" parent="." instance=ExtResource("1_k5f4k")]
