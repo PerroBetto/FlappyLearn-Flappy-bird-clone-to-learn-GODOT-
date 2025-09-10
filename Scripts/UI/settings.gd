@@ -3,6 +3,7 @@ signal back
 
 @onready var _win_mode : OptionButton = $VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/WinMode/OptionButton
 @onready var _resolution : OptionButton = $VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/WinResolution/resolutionButton
+@onready var _volume : HSlider = $VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Volume/HSlider
 
 var PATH : String = "user://flappy.settings"
 
@@ -41,6 +42,9 @@ func set_settings(values : Dictionary):
 	Resolution = Vector2i(values["Resolution_x"], values["Resolution_y"])
 	var res_key : String = str(Resolution.x) + "x" + str(Resolution.y)
 	_resolution.select(resolutions_index[res_key])
+
+	Volume = values["Volume"]
+	_volume.value = Volume
 		
 
 
@@ -53,7 +57,7 @@ func _on_apply_pressed():
 	"Window_Mode" : WinMode,
 	"Resolution_x" : Resolution.x,
 	"Resolution_y" : Resolution.y,
-	"Volume" : 1.0
+	"Volume" : Volume
 	}
 	Globals.save_settings(new_settings)
 	Globals.load_settings()
@@ -78,3 +82,7 @@ func _on_option_button_item_selected(index:int):
 func _on_resolution_button_item_selected(index:int) -> void:
 	Resolution = resolutions_values[resolutions_index.find_key(index)]
 	print(Resolution)
+
+
+func _on_h_slider_drag_ended(_value_changed:bool):
+	Volume = _volume.value

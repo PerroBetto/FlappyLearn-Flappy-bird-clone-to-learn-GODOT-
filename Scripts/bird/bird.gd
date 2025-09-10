@@ -2,6 +2,9 @@ extends CharacterBody2D
 signal pointUP
 signal killed
 
+@onready var _jmpsfx : AudioStreamPlayer = $JumpSound
+@onready var _pntsfx : AudioStreamPlayer = $PointSound
+
 var JumpHeight : float = -300
 
 var state : int;
@@ -41,6 +44,7 @@ func _physics_process(delta):
 
 func _on_point_detect_area_entered(area):
 	if(area.name == "PointDetect"):
+		_pntsfx.play()
 		pointUP.emit()
 
 
@@ -53,6 +57,8 @@ func _on_player_dead():
 	print("killed")
 
 func _on_jump():
+	
+	_jmpsfx.play()
 	velocity.y = JumpHeight
 
 

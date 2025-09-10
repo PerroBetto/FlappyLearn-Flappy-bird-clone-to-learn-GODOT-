@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ca5f6tamdqp4b"]
+[gd_scene load_steps=7 format=3 uid="uid://ca5f6tamdqp4b"]
 
 [ext_resource type="Texture2D" uid="uid://bo8w0r6s1d7kr" path="res://icon.svg" id="1_i8bdw"]
 [ext_resource type="Script" uid="uid://b1ol4xpuggvja" path="res://Scripts/bird/bird.gd" id="1_mcegt"]
+[ext_resource type="AudioStream" uid="uid://edbiiv16c6tx" path="res://jump.wav" id="3_8a1mm"]
+[ext_resource type="AudioStream" uid="uid://bcodgkehg7uin" path="res://pickupCoin.wav" id="4_u37kb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mcegt"]
 radius = 32.0
@@ -24,6 +26,12 @@ shape = SubResource("CircleShape2D_mcegt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="pointDetect"]
 shape = SubResource("CircleShape2D_yf0pw")
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_8a1mm")
+
+[node name="PointSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_u37kb")
 
 [connection signal="area_entered" from="pointDetect" to="." method="_on_point_detect_area_entered"]
 [connection signal="body_entered" from="pointDetect" to="." method="_on_point_detect_body_entered"]

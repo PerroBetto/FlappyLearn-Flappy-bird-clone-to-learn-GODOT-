@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://efny7ndplox5"]
+[gd_scene load_steps=4 format=3 uid="uid://efny7ndplox5"]
 
 [ext_resource type="Texture2D" uid="uid://bo8w0r6s1d7kr" path="res://icon.svg" id="1_kbfn8"]
+[ext_resource type="AudioStream" uid="uid://chmk5tk8ut8ja" path="res://explosion.wav" id="2_r1u3a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r1u3a"]
 radius = 32.0
@@ -13,3 +14,7 @@ texture = ExtResource("1_kbfn8")
 
 [node name="deadBirdCollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_r1u3a")
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_r1u3a")
+autoplay = true

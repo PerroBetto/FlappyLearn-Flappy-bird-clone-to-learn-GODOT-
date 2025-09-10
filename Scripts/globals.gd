@@ -13,9 +13,9 @@ var Paused : bool = false
 # var Volume : float;
 var base_settings = {
 	"Window_Mode" : Window.Mode.MODE_WINDOWED,
-	"Resolution_x" : 1920,
-	"Resolution_y" : 1080,
-	"Volume" : 1.0
+	"Resolution_x" : 1280,
+	"Resolution_y" : 720,
+	"Volume" : 100.0
 
 }
 
@@ -100,6 +100,10 @@ func load_settings():
 
 	get_tree().get_root().get_window().mode = file_data["Window_Mode"]
 	DisplayServer.window_set_size(Vector2i(file_data["Resolution_x"], file_data["Resolution_y"]))
+
+	var new_volume = 20 * (log(file_data["Volume"])/log(10)) -  40
+	AudioServer.set_bus_volume_db(0, new_volume)
+	print(new_volume)
 
 
 	
