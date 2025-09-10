@@ -185,6 +185,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_owiy1")
 theme_override_styles/normal = SubResource("StyleBoxFlat_owiy1")
 text = "Delete Save"
 
+[connection signal="item_selected" from="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/WinMode/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="pressed" from="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Apply" to="." method="_on_apply_pressed"]
 [connection signal="pressed" from="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ResetSave" to="." method="_on_reset_save_pressed"]
