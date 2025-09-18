@@ -15,7 +15,8 @@ var base_settings = {
 	"Window_Mode" : Window.Mode.MODE_WINDOWED,
 	"Resolution_x" : 1280,
 	"Resolution_y" : 720,
-	"Volume" : 100.0
+	"Volume" : 100.0,
+	"Jump" : InputMap.action_get_events("Jump").get(0) #jump
 
 }
 
@@ -97,13 +98,21 @@ func load_settings():
 	#Window_Mode: Window.mode
 	#Resolution: screen resolution
 	#Volume: float
+	#Jump: InputEvent
 
 	get_tree().get_root().get_window().mode = file_data["Window_Mode"]
 	DisplayServer.window_set_size(Vector2i(file_data["Resolution_x"], file_data["Resolution_y"]))
 
 	var new_volume = 20 * (log(file_data["Volume"])/log(10)) -  40
 	AudioServer.set_bus_volume_db(0, new_volume)
-	print(new_volume)
+	
+	var jump_data = file_data["Jump"]
+	var new_jump : InputEvent = InputEventKey.new()
+
+
+	print(jump_data)
+	InputMap.action_erase_events("Jump")
+	# InputMap.action_add_event("Jump", new_jump)
 
 
 	

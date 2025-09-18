@@ -30,7 +30,7 @@ func _physics_process(delta):
 	if(state == STATE.ALIVE):
 		if(!is_on_floor()):
 			velocity.y += get_gravity().y * delta
-		if(Input.is_action_just_pressed("ui_accept") && state == STATE.ALIVE):
+		if(Input.is_action_just_pressed("Jump") && state == STATE.ALIVE):
 			_on_jump()
 	elif(state == STATE.TITLE):
 		if(!is_on_floor()):
