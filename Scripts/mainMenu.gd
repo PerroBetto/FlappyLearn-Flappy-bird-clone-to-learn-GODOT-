@@ -24,5 +24,3 @@ func score_transition():
 		Globals._load_data()
 		scoreBoard.call("process_point", Globals.High_Score)
 		scoreBoard.show()
-
-

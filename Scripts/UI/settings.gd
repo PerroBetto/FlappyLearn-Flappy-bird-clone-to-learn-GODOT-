@@ -4,12 +4,16 @@ signal back
 @onready var _win_mode : OptionButton = $VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/WinMode/OptionButton
 @onready var _resolution : OptionButton = $VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/WinResolution/resolutionButton
 @onready var _volume : HSlider = $VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Volume/HSlider
+@onready var _jumpKey : Button = $VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Jump/Key
 
 var PATH : String = "user://flappy.settings"
 
 var WinMode : Window.Mode;
 var Resolution : Vector2i;
 var Volume : float;
+
+var Jump : int;
+var mapping : bool = false;
 
 var resolutions_values = {
 	"2560x1440" : Vector2i(2560, 1440),
@@ -45,6 +49,11 @@ func set_settings(values : Dictionary):
 
 	Volume = values["Volume"]
 	_volume.value = Volume
+
+	Jump = values["Jump"]
+	var jumpKey = InputEventKey.new()
+	jumpKey.keycode = Jump
+	_jumpKey.text = jumpKey.as_text()
 		
 
 
@@ -57,7 +66,8 @@ func _on_apply_pressed():
 	"Window_Mode" : WinMode,
 	"Resolution_x" : Resolution.x,
 	"Resolution_y" : Resolution.y,
-	"Volume" : Volume
+	"Volume" : Volume,
+	"Jump" : Jump
 	}
 	Globals.save_settings(new_settings)
 	Globals.load_settings()
@@ -86,3 +96,17 @@ func _on_resolution_button_item_selected(index:int) -> void:
 
 func _on_h_slider_drag_ended(_value_changed:bool):
 	Volume = _volume.value
+
+
+func _on_key_pressed():
+	mapping = true;
+	_jumpKey.text = "..."
+
+func _input(event):
+	if mapping:
+		if(event is InputEventKey || (event is InputEventMouseButton && event.is_pressed())):
+			Jump = event.keycode
+			_jumpKey.text = event.as_text()
+			mapping = false
+
+			accept_event()

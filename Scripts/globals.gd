@@ -15,8 +15,8 @@ var base_settings = {
 	"Window_Mode" : Window.Mode.MODE_WINDOWED,
 	"Resolution_x" : 1280,
 	"Resolution_y" : 720,
-	"Volume" : 100.0
-
+	"Volume" : 100.0,
+	"Jump" : KEY_SPACE
 }
 
 #
@@ -62,7 +62,7 @@ func save_settings(values : Dictionary):
 
 	var settingsFile = FileAccess.open(settings_path, FileAccess.WRITE)
 
-	var json_string = JSON.stringify(values)
+	var json_string = JSON.stringify(values, "\t")
 
 	settingsFile.store_line(json_string)
 
@@ -77,9 +77,10 @@ func get_settings() -> Dictionary:
 	#helper variable
 	var json = JSON.new()
 
-	var err = json.parse(settingsFile.get_line())
+	var err = json.parse(settingsFile.get_as_text())
 	if!(err == OK):
-		print("didnt work")
+		print(json.get_error_line())
+		print(json.get_error_message())
 		return {}
 
 	var file_data = json.data
@@ -93,7 +94,7 @@ func load_settings():
 	
 	var file_data = get_settings()
 
-	#Keys: 
+	#Keys: KeyCode
 	#Window_Mode: Window.mode
 	#Resolution: screen resolution
 	#Volume: float
@@ -103,7 +104,12 @@ func load_settings():
 
 	var new_volume = 20 * (log(file_data["Volume"])/log(10)) -  40
 	AudioServer.set_bus_volume_db(0, new_volume)
-	print(new_volume)
+
+	InputMap.action_erase_events("Jump")
+
+	var jumpKey = InputEventKey.new()
+	jumpKey.keycode = file_data["Jump"]
+	InputMap.action_add_event("Jump", jumpKey)
 
 
 	
