@@ -4,14 +4,12 @@ signal back
 @onready var _win_mode : OptionButton = $VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/WinMode/OptionButton
 @onready var _resolution : OptionButton = $VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/WinResolution/resolutionButton
 @onready var _volume : HSlider = $VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Volume/HSlider
-@onready var _jump : Button = $VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Jump/Button
 
 var PATH : String = "user://flappy.settings"
 
 var WinMode : Window.Mode;
 var Resolution : Vector2i;
 var Volume : float;
-var Jump;
 
 var resolutions_values = {
 	"2560x1440" : Vector2i(2560, 1440),
@@ -29,7 +27,6 @@ var resolutions_index = {
 
 func _ready():
 	set_settings(Globals.get_settings())
-	print(Jump)
 
 func set_settings(values : Dictionary):
 	WinMode = values["Window_Mode"]
@@ -49,7 +46,6 @@ func set_settings(values : Dictionary):
 	Volume = values["Volume"]
 	_volume.value = Volume
 		
-	Jump = values["Jump"]
 
 
 func _on_back_pressed():
@@ -61,8 +57,7 @@ func _on_apply_pressed():
 	"Window_Mode" : WinMode,
 	"Resolution_x" : Resolution.x,
 	"Resolution_y" : Resolution.y,
-	"Volume" : Volume,
-	"Jump" : Jump
+	"Volume" : Volume
 	}
 	Globals.save_settings(new_settings)
 	Globals.load_settings()
